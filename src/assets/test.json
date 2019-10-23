@@ -1,0 +1,91 @@
+{
+	"type": "bpmn",
+	"cells": [
+		{
+			"type": "bpmn.Activity",
+			"activityType": "task",
+			"subProcess": true,
+			"content": "node1",
+			"id": "node1"
+		},
+		{
+			"type": "bpmn.Activity",
+			"activityType": "task",
+			"subProcess": false,
+			"content": "End",
+			"id": "End"
+		},
+		{
+			"type": "bpmn.Activity",
+			"activityType": "task",
+			"subProcess": false,
+			"content": "start",
+			"id": "start"
+		},
+		{
+			"type": "bpmn.Flow",
+			"flowType": "normal",
+			"id": "start_node1",
+			"source": {
+				"id": "start"
+			},
+			"target": {
+				"id": "node1"
+			},
+			"attrs": {
+				"root": {
+					"dataFlowType": "normal"
+				}
+			}
+		},
+		{
+			"type": "bpmn.Activity",
+			"activityType": "task",
+			"subProcess": false,
+			"content": "node2",
+			"id": "node2",
+			"attrs": {
+				".inner": {
+					"visibility": "visible"
+				},
+				".sub-process": {
+					"visibility": "visible",
+					"data-sub-process": "node1"
+				}
+			}
+		},
+		{
+			"type": "bpmn.Flow",
+			"flowType": "normal",
+			"id": "node1_node2",
+			"source": {
+				"id": "node1"
+			},
+			"target": {
+				"id": "node2"
+			},
+			"attrs": {
+				"root": {
+					"dataFlowType": "normal"
+				}
+			}
+		},
+		{
+			"type": "bpmn.Flow",
+			"flowType": "normal",
+			"id": "node2_end",
+			"source": {
+				"id": "node2"
+			},
+			"target": {
+				"id": "End"
+			},
+			"attrs": {
+				"root": {
+					"dataFlowType": "normal"
+				}
+			}
+		}
+		 
+	]
+}
